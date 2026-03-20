@@ -1,0 +1,641 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medical Billing & Coding — Master Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#1a2340;--navy2:#242e52;
+    --blue:#2563eb;--blue-l:#dbeafe;--blue-m:#93c5fd;
+    --teal:#0d7377;--teal-l:#ccfbf1;--teal-m:#5eead4;
+    --amber:#92400e;--amber-l:#fef3c7;--amber-m:#fbbf24;
+    --coral:#9f1239;--coral-l:#ffe4e6;--coral-m:#fda4af;
+    --purple:#4c1d95;--purple-l:#ede9fe;--purple-m:#a78bfa;
+    --green:#065f46;--green-l:#d1fae5;--green-m:#34d399;
+    --pink:#831843;--pink-l:#fce7f3;--pink-m:#f9a8d4;
+    --gray:#374151;--gray-l:#f3f4f6;--gray-m:#d1d5db;
+    --text:#111827;--muted:#6b7280;--white:#fff;--bg:#f0f4ff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+  /* HEADER */
+  header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);padding:2rem 1.5rem 1.5rem;text-align:center;}
+  .hbadge{display:inline-block;font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:3px 14px;border-radius:20px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.75);margin-bottom:.75rem;}
+  header h1{font-family:'Nunito',sans-serif;font-size:clamp(20px,4vw,32px);font-weight:900;color:#fff;margin-bottom:.4rem;}
+  header p{font-size:13px;color:rgba(255,255,255,.6);max-width:560px;margin:0 auto;}
+
+  /* NAV TABS */
+  .tabs{background:var(--white);border-bottom:2px solid var(--gray-m);display:flex;overflow-x:auto;scrollbar-width:none;position:sticky;top:0;z-index:100;}
+  .tabs::-webkit-scrollbar{display:none;}
+  .tab{flex-shrink:0;padding:.85rem 1.25rem;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all .15s;}
+  .tab:hover{color:var(--text);}
+  .tab.on{color:var(--blue);border-bottom-color:var(--blue);}
+
+  /* CONTENT */
+  .page{display:none;max-width:900px;margin:0 auto;padding:1.5rem 1rem 3rem;}
+  .page.on{display:block;}
+
+  /* SECTION CARDS */
+  .sec-card{background:var(--white);border-radius:14px;border:1px solid var(--gray-m);margin-bottom:1.25rem;overflow:hidden;}
+  .sec-head{padding:.9rem 1.25rem;display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none;}
+  .sec-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+  .sec-title{font-family:'Nunito',sans-serif;font-size:15px;font-weight:900;flex:1;}
+  .sec-count{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;}
+  .sec-arrow{font-size:14px;color:var(--muted);transition:transform .2s;}
+  .sec-arrow.open{transform:rotate(180deg);}
+  .sec-body{padding:0 1.25rem 1.25rem;display:none;}
+  .sec-body.open{display:block;}
+
+  /* CONCEPT TABLE */
+  .ctable{width:100%;border-collapse:collapse;font-size:13px;}
+  .ctable th{padding:8px 10px;text-align:left;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.05em;border-bottom:2px solid var(--gray-m);color:var(--muted);}
+  .ctable td{padding:9px 10px;border-bottom:1px solid var(--gray-l);vertical-align:top;line-height:1.5;}
+  .ctable tr:last-child td{border-bottom:none;}
+  .ctable tr:hover td{background:#fafbff;}
+  .term{font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;}
+  .def{color:var(--text);}
+  .ex{font-size:12px;color:var(--muted);margin-top:2px;}
+
+  /* CHIPS */
+  .chip{display:inline-block;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;padding:2px 8px;border-radius:5px;white-space:nowrap;}
+  .chip-blue{background:var(--blue-l);color:#1e40af;}
+  .chip-teal{background:var(--teal-l);color:var(--teal);}
+  .chip-amber{background:var(--amber-l);color:var(--amber);}
+  .chip-coral{background:var(--coral-l);color:var(--coral);}
+  .chip-purple{background:var(--purple-l);color:var(--purple);}
+  .chip-green{background:var(--green-l);color:var(--green);}
+  .chip-pink{background:var(--pink-l);color:var(--pink);}
+
+  /* TIP BOXES */
+  .tip{border-radius:10px;padding:.85rem 1.1rem;margin:.75rem 0;font-size:13px;line-height:1.6;}
+  .tip strong{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;font-weight:800;}
+  .tip-amber{background:var(--amber-l);color:var(--amber);border:1px solid var(--amber-m);}
+  .tip-blue{background:var(--blue-l);color:#1e40af;border:1px solid var(--blue-m);}
+  .tip-teal{background:var(--teal-l);color:var(--teal);border:1px solid var(--teal-m);}
+  .tip-coral{background:var(--coral-l);color:var(--coral);border:1px solid var(--coral-m);}
+
+  /* MEMORY GRID */
+  .mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin:.75rem 0;}
+  .mcard{border-radius:10px;padding:.9rem 1rem;border:1.5px solid;text-align:center;}
+  .mcard .mcode{font-family:'DM Mono',monospace;font-size:16px;font-weight:500;margin-bottom:4px;}
+  .mcard .mname{font-size:12px;font-weight:700;}
+  .mcard .mex{font-size:11px;margin-top:4px;opacity:.8;}
+
+  /* QUIZ */
+  .quiz-progress{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem;}
+  .qp-track{flex:1;height:8px;background:var(--gray-l);border-radius:4px;}
+  .qp-fill{height:8px;background:linear-gradient(90deg,var(--blue),var(--teal));border-radius:4px;transition:width .4s;}
+  .qp-label{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);}
+  .qscore{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--blue);}
+
+  .qcard{background:var(--white);border-radius:14px;border:1px solid var(--gray-m);overflow:hidden;margin-bottom:1rem;animation:fadeUp .2s ease;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  .qcard-head{padding:1rem 1.25rem .75rem;border-bottom:1px solid var(--gray-l);}
+  .qtag{display:inline-flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:10px;font-weight:500;padding:2px 9px;border-radius:20px;margin-bottom:.5rem;}
+  .qnum{font-family:'Nunito',sans-serif;font-size:14px;font-weight:900;color:var(--navy);margin-bottom:.1rem;}
+  .qtext{font-size:15px;font-weight:600;color:var(--text);line-height:1.6;}
+  .qopts{padding:.75rem 1.25rem 1rem;display:flex;flex-direction:column;gap:8px;}
+  .qopt{display:flex;align-items:flex-start;gap:10px;padding:10px 13px;border-radius:10px;border:1.5px solid var(--gray-m);background:#fafafa;cursor:pointer;font-size:13.5px;color:var(--text);text-align:left;line-height:1.5;transition:all .12s;font-family:'Nunito Sans',sans-serif;}
+  .qopt:hover:not(.locked){background:var(--blue-l);border-color:var(--blue-m);color:#1e3a8a;}
+  .qletter{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--gray-m);color:var(--gray);font-family:'DM Mono',monospace;font-size:10px;font-weight:500;display:flex;align-items:center;justify-content:center;margin-top:1px;transition:all .12s;}
+  .qopt:hover:not(.locked) .qletter{background:var(--blue);color:#fff;}
+  .qopt.correct{background:var(--green-l);border-color:var(--green-m);color:var(--green);}
+  .qopt.correct .qletter{background:var(--green);color:#fff;}
+  .qopt.wrong{background:var(--coral-l);border-color:var(--coral-m);color:var(--coral);}
+  .qopt.wrong .qletter{background:var(--coral);color:#fff;}
+  .qopt.locked{cursor:default;}
+  .rat-panel{margin:0 1.25rem 1.25rem;border-radius:10px;overflow:hidden;border:1px solid var(--gray-m);display:none;}
+  .rat-panel.show{display:block;animation:fadeUp .2s ease;}
+  .rat-row{display:flex;gap:8px;align-items:flex-start;padding:8px 12px;font-size:13px;line-height:1.5;border-bottom:1px solid rgba(0,0,0,.04);}
+  .rat-row:last-child{border-bottom:none;}
+  .rat-row.rok{background:var(--green-l);color:var(--green);}
+  .rat-row.rno{background:var(--coral-l);color:var(--coral);}
+  .rat-icon{font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px;}
+  .rat-text b{font-weight:700;}
+  .nbtn{margin:0 1.25rem 1.25rem;display:none;}
+  .nbtn.show{display:block;}
+  .nbtn button{padding:9px 22px;border-radius:10px;background:var(--navy);color:#fff;border:none;cursor:pointer;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;}
+  .nbtn button:hover{background:var(--navy2);}
+
+  /* RESULTS */
+  .result-box{background:var(--white);border-radius:16px;border:2px solid var(--green-m);padding:2.5rem 1.5rem;text-align:center;animation:fadeUp .3s ease;}
+  .rb-score{font-family:'Nunito',sans-serif;font-size:64px;font-weight:900;color:var(--navy);line-height:1;}
+  .rb-pct{font-family:'DM Mono',monospace;font-size:22px;color:var(--blue);margin:.25rem 0 .75rem;}
+  .rb-msg{font-size:15px;color:var(--muted);margin-bottom:1.5rem;line-height:1.6;}
+  .rb-cats{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:1.5rem;}
+  .rb-cat{padding:5px 14px;border-radius:8px;font-size:12px;font-weight:700;border:1.5px solid;}
+  .rb-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .rb-btn{padding:10px 24px;border-radius:10px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer;border:none;}
+  .rb-btn.primary{background:var(--navy);color:#fff;}
+  .rb-btn.outline{background:var(--gray-l);color:var(--text);border:1.5px solid var(--gray-m);}
+
+  /* FLASHCARDS */
+  .fc-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:1rem;flex-wrap:wrap;}
+  .fc-cat-sel{padding:7px 12px;border-radius:8px;border:1.5px solid var(--gray-m);font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;background:var(--white);color:var(--text);cursor:pointer;}
+  .fc-counter{font-family:'DM Mono',monospace;font-size:13px;color:var(--muted);}
+  .flashcard{perspective:800px;height:160px;cursor:pointer;margin-bottom:1.25rem;}
+  .fc-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .5s;}
+  .fc-inner.flipped{transform:rotateY(180deg);}
+  .fc-front,.fc-back{position:absolute;inset:0;border-radius:14px;display:flex;align-items:center;justify-content:center;padding:1.5rem;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+  .fc-front{background:var(--navy);color:#fff;font-family:'Nunito',sans-serif;font-size:17px;font-weight:800;text-align:center;line-height:1.4;border:2px solid var(--navy2);}
+  .fc-back{background:var(--white);transform:rotateY(180deg);font-size:14px;color:var(--text);text-align:center;line-height:1.6;border:2px solid var(--blue-m);flex-direction:column;gap:6px;}
+  .fc-back .ans{font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;color:var(--blue);}
+  .fc-hint{font-size:11px;color:var(--muted);margin-bottom:.5rem;text-align:center;}
+  .fc-nav{display:flex;align-items:center;justify-content:center;gap:12px;}
+  .fc-nav button{padding:8px 20px;border-radius:8px;border:1.5px solid var(--gray-m);background:var(--white);font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer;color:var(--text);}
+  .fc-nav button:hover{background:var(--gray-l);}
+  .fc-nav .fc-pos{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);min-width:60px;text-align:center;}
+
+  @media(max-width:500px){.mgrid{grid-template-columns:1fr 1fr;} .qtext{font-size:14px;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hbadge">NHA CBCS Exam Prep — 78 Concepts</div>
+  <h1>Medical Billing & Coding Master Guide</h1>
+  <p>CPT · HCPCS · ICD-10-CM · E&M · Modifiers · Code Sets · Claim Forms</p>
+</header>
+
+<div class="tabs">
+  <div class="tab on" onclick="showPage('learn',this)">📚 Learn by Topic</div>
+  <div class="tab" onclick="showPage('flash',this)">🃏 Flashcards</div>
+  <div class="tab" onclick="showPage('quiz',this)">✏️ Quiz Me</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ LEARN PAGE -->
+<div id="pg-learn" class="page on">
+
+  <!-- 1. CPT FUNDAMENTALS -->
+  <div class="sec-card">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-icon" style="background:#dbeafe;">📋</div>
+      <div class="sec-title" style="color:#1e40af;">CPT — Current Procedural Terminology</div>
+      <span class="sec-count chip-blue chip">15 terms</span>
+      <span class="sec-arrow">▼</span>
+    </div>
+    <div class="sec-body open">
+      <div class="tip tip-blue"><strong>What is CPT?</strong>CPT stands for Current Procedural Terminology. It describes medical, surgical, and diagnostic services. Maintained and published annually by the AMA (American Medical Association). First published in 1966.</div>
+      <table class="ctable">
+        <tr><th>Term / Concept</th><th>Meaning & Key Detail</th></tr>
+        <tr><td><div class="term">CPT full name</div></td><td><div class="def">Current Procedural Terminology</div><div class="ex">Codes describe procedures and services performed by providers</div></td></tr>
+        <tr><td><div class="term">Published & maintained by</div></td><td><div class="def">AMA — American Medical Association</div><div class="ex">Updated annually. New/deleted codes published by CMS.</div></td></tr>
+        <tr><td><div class="term">First published</div></td><td><div class="def">1966</div></td></tr>
+        <tr><td><div class="term">CPT describes</div></td><td><div class="def">Medical, surgical, and diagnostic services</div><div class="ex">TRUE — this is a tested statement</div></td></tr>
+        <tr><td><div class="term">6 CPT sections</div></td><td><div class="def">E&M · Anesthesia · Surgery · Radiology · Pathology/Lab · Medicine</div></td></tr>
+        <tr><td><div class="term">Surgery section range</div></td><td><div class="def">10004–69990</div><div class="ex">Largest section, organized by body system</div></td></tr>
+        <tr><td><div class="term">Radiology section</div></td><td><div class="def">70010–79999</div><div class="ex">X-ray, CT, MRI, ultrasound, nuclear medicine</div></td></tr>
+        <tr><td><div class="term">Pathology & Lab</div></td><td><div class="def">80047–89398</div><div class="ex">Lab tests, specimen analysis</div></td></tr>
+        <tr><td><div class="term">Category II codes</div></td><td><div class="def">Optional codes used for tracking performance measures</div><div class="ex">Supplemental tracking — not required for billing</div></td></tr>
+        <tr><td><div class="term">CPT modifier purpose</div></td><td><div class="def">Describes alterations done to a procedure without changing the core code</div><div class="ex">Example: modifier -25 = separate significant E&M same day as procedure</div></td></tr>
+        <tr><td><div class="term">Circle with line symbol</div></td><td><div class="def">Indicates modifier 51 (multiple procedures) exempt</div></td></tr>
+        <tr><td><div class="term">Surgical package includes</div></td><td><div class="def">Uncomplicated post-operative care</div><div class="ex">Also includes: local anesthesia, one related E&M the day before/of surgery</div></td></tr>
+        <tr><td><div class="term">Repair of multiple lacerations same site</div></td><td><div class="def">Add together and report as one code (manipulation)</div></td></tr>
+        <tr><td><div class="term">What providers enter on insurance forms</div></td><td><div class="def">CPT and HCPCS codes to show which services were performed</div></td></tr>
+        <tr><td><div class="term">Outpatient transitional payments</div></td><td><div class="def">C codes — reported under Outpatient Prospective Payment System (OPPS)</div></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 2. E&M -->
+  <div class="sec-card">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-icon" style="background:#d1fae5;">🩺</div>
+      <div class="sec-title" style="color:#065f46;">E&M — Evaluation & Management</div>
+      <span class="sec-count chip-green chip">10 terms</span>
+      <span class="sec-arrow">▼</span>
+    </div>
+    <div class="sec-body">
+      <div class="tip tip-teal"><strong>The 3 Key Components (HEM)</strong>H = History &nbsp;·&nbsp; E = Examination &nbsp;·&nbsp; M = Medical Decision-Making. Time can take precedence over HEM when counseling/coordination dominates the visit.</div>
+      <table class="ctable">
+        <tr><th>Term / Concept</th><th>Meaning & Key Detail</th></tr>
+        <tr><td><div class="term">3 key E&M components</div></td><td><div class="def">History · Examination · Medical Decision-Making (HEM)</div></td></tr>
+        <tr><td><div class="term">Does time override HEM?</div></td><td><div class="def">YES — when counseling/coordination of care dominates the encounter</div></td></tr>
+        <tr><td><div class="term">New patient</div></td><td><div class="def">Has NOT been seen by same specialty in past 3 years</div></td></tr>
+        <tr><td><div class="term">Established patient</div></td><td><div class="def">HAS been seen by same specialty within past 3 years</div></td></tr>
+        <tr><td><div class="term">4 patient status types</div></td><td><div class="def">New · Established · Inpatient · Outpatient</div></td></tr>
+        <tr><td><div class="term">First 3 factors in coding an encounter</div></td><td><div class="def">Status · Type of service · Place of service</div></td></tr>
+        <tr><td><div class="term">Consultation</div></td><td><div class="def">Service provided by a physician whose opinion is requested by another provider</div></td></tr>
+        <tr><td><div class="term">The 3 R's of consultations</div></td><td><div class="def">Request · Render · Report</div></td></tr>
+        <tr><td><div class="term">Subsequent hospital care</div></td><td><div class="def">Requires only 2 of 3 key components (not all 3)</div><div class="ex">This is the E&M subcategory that is an exception to the 3-component rule</div></td></tr>
+        <tr><td><div class="term">Diagnostic statement</div></td><td><div class="def">Physician's description of the main reason for a patient encounter</div></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 3. HCPCS -->
+  <div class="sec-card">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-icon" style="background:#fef3c7;">💊</div>
+      <div class="sec-title" style="color:#92400e;">HCPCS — Healthcare Common Procedure Coding System</div>
+      <span class="sec-count chip-amber chip">14 terms</span>
+      <span class="sec-arrow">▼</span>
+    </div>
+    <div class="sec-body">
+      <div class="tip tip-amber"><strong>HCPCS Levels</strong>Level 1 = CPT codes &nbsp;·&nbsp; Level 2 = Alphanumeric codes for supplies, drugs, DME, services NOT in CPT. Established by CMS in 1978 to provide a standardized coding system.</div>
+      <table class="ctable">
+        <tr><th>Term / Concept</th><th>Meaning & Key Detail</th></tr>
+        <tr><td><div class="term">HCPCS stands for</div></td><td><div class="def">Healthcare Common Procedure Coding System</div></td></tr>
+        <tr><td><div class="term">Established by</div></td><td><div class="def">CMS — Centers for Medicare & Medicaid Services — in 1978</div></td></tr>
+        <tr><td><div class="term">Why established</div></td><td><div class="def">To provide a standardized coding system</div></td></tr>
+        <tr><td><div class="term">HCPCS Level 1</div></td><td><div class="def">CPT codes</div></td></tr>
+        <tr><td><div class="term">HCPCS Level 2</div></td><td><div class="def">Alphanumeric codes — products, supplies, services NOT in CPT</div></td></tr>
+        <tr><td><div class="term">Level 2 maintained by</div></td><td><div class="def">CMS work group</div></td></tr>
+        <tr><td><div class="term">Level 2 modifiers location in manual</div></td><td><div class="def">After the table of drugs OR before the A codes</div></td></tr>
+        <tr><td><div class="term">HCPCS Level 2 modifiers</div></td><td><div class="def">May also be added to CPT codes</div></td></tr>
+        <tr><td><div class="term">HCPCS also found in CPT where?</div></td><td><div class="def">Appendix A (Modifiers)</div></td></tr>
+        <tr><td><div class="term">4 items HCPCS covers</div></td><td><div class="def">Procedures · Supplies · Products · Services for Medicare/Medicaid</div></td></tr>
+        <tr><td><div class="term">J codes</div></td><td><div class="def">Injectable/infusible drugs administered in clinical settings</div><div class="ex">J codes are listed by generic name in the table of drugs</div></td></tr>
+        <tr><td><div class="term">G codes</div></td><td><div class="def">Temporary medical procedures/professional services — no CPT code exists yet</div></td></tr>
+        <tr><td><div class="term">S codes</div></td><td><div class="def">BCBS codes — NOT valid for Medicare/Medicaid; useful for private payers</div></td></tr>
+        <tr><td><div class="term">C codes</div></td><td><div class="def">Transitional pass-through payments under OPPS</div></td></tr>
+      </table>
+      <div class="tip tip-amber"><strong>Drug route abbreviations — tested!</strong></div>
+      <div class="mgrid">
+        <div class="mcard" style="background:#fef3c7;border-color:#fbbf24;"><div class="mcode" style="color:#92400e;">SC</div><div class="mname" style="color:#78350f;">Subcutaneous</div></div>
+        <div class="mcard" style="background:#fef3c7;border-color:#fbbf24;"><div class="mcode" style="color:#92400e;">IM</div><div class="mname" style="color:#78350f;">Intramuscular</div></div>
+        <div class="mcard" style="background:#fef3c7;border-color:#fbbf24;"><div class="mcode" style="color:#92400e;">IV</div><div class="mname" style="color:#78350f;">Intravenous</div></div>
+        <div class="mcard" style="background:#fef3c7;border-color:#fbbf24;"><div class="mcode" style="color:#92400e;">IT</div><div class="mname" style="color:#78350f;">Intrathecal</div></div>
+        <div class="mcard" style="background:#fef3c7;border-color:#fbbf24;"><div class="mcode" style="color:#92400e;">INH</div><div class="mname" style="color:#78350f;">Inhalant solution</div></div>
+        <div class="mcard" style="background:#fef3c7;border-color:#fbbf24;"><div class="mcode" style="color:#92400e;">VAR</div><div class="mname" style="color:#78350f;">Various routes</div></div>
+        <div class="mcard" style="background:#fef3c7;border-color:#fbbf24;"><div class="mcode" style="color:#92400e;">OTH</div><div class="mname" style="color:#78350f;">Other routes</div></div>
+      </div>
+      <div class="tip tip-amber"><strong>H0020 example</strong>Patient in drug/alcohol rehab hospital getting methadone injection by treating physician = H0020</div>
+    </div>
+  </div>
+
+  <!-- 4. ICD-10-CM -->
+  <div class="sec-card">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-icon" style="background:#ede9fe;">🔬</div>
+      <div class="sec-title" style="color:#4c1d95;">ICD-10-CM — Diagnosis Codes</div>
+      <span class="sec-count chip-purple chip">16 terms</span>
+      <span class="sec-arrow">▼</span>
+    </div>
+    <div class="sec-body">
+      <div class="tip tip-blue"><strong>ICD-10-CM Quick Facts</strong>Developed by NCHS (National Center for Health Statistics) to replace ICD-9-CM. Replaced on October 1, 2015. Up to 7 characters. 21 chapters organized by body system or nature of disease.</div>
+      <table class="ctable">
+        <tr><th>Term / Concept</th><th>Meaning & Key Detail</th></tr>
+        <tr><td><div class="term">Developed by</div></td><td><div class="def">NCHS — National Center for Health Statistics (part of CDC)</div></td></tr>
+        <tr><td><div class="term">Replaced ICD-9-CM when?</div></td><td><div class="def">October 1, 2015</div></td></tr>
+        <tr><td><div class="term">Max characters</div></td><td><div class="def">7 characters</div></td></tr>
+        <tr><td><div class="term">Tabular list chapters</div></td><td><div class="def">21 chapters — based on body system or nature of disease/injury</div></td></tr>
+        <tr><td><div class="term">NEC</div></td><td><div class="def">Not Elsewhere Classified — specific but no individual code exists</div></td></tr>
+        <tr><td><div class="term">NOS</div></td><td><div class="def">Not Otherwise Specified — not enough documentation for more detail</div></td></tr>
+        <tr><td><div class="term">Excludes 1</div></td><td><div class="def">NEVER use with this code — do not report both codes together</div></td></tr>
+        <tr><td><div class="term">Excludes 2</div></td><td><div class="def">Condition is NOT part of this code BUT patient CAN have both — report both if applicable</div></td></tr>
+        <tr><td><div class="term">Combination code</div></td><td><div class="def">One code captures both etiology AND manifestation</div><div class="ex">Example: E11.65 Type 2 DM with hyperglycemia</div></td></tr>
+        <tr><td><div class="term">Laterality</div></td><td><div class="def">Refers to paired organs (left/right side)</div></td></tr>
+        <tr><td><div class="term">Z codes purpose</div></td><td><div class="def">Indicate reason for an encounter (not an illness)</div><div class="ex">Used more frequently in outpatient settings</div></td></tr>
+        <tr><td><div class="term">Z code for cancer history</div></td><td><div class="def">Z code — personal history of malignant neoplasm</div></td></tr>
+        <tr><td><div class="term">Injury code clue word</div></td><td><div class="def">"Injury" alerts coder that a V/W/X/Y code may be needed (external cause)</div></td></tr>
+        <tr><td><div class="term">Late effect (sequela)</div></td><td><div class="def">Remains AFTER the acute illness or injury has resolved — TRUE</div></td></tr>
+        <tr><td><div class="term">Fracture default</div></td><td><div class="def">If not coded as open or closed → default to CLOSED</div></td></tr>
+        <tr><td><div class="term">Crosswalk</div></td><td><div class="def">Comparison of two coding systems showing equivalent classifications</div></td></tr>
+      </table>
+      <div class="tip tip-teal"><strong>Neoplasm terms — always tested</strong></div>
+      <div class="mgrid">
+        <div class="mcard" style="background:#d1fae5;border-color:#34d399;"><div class="mcode" style="color:#065f46;">Benign</div><div class="mname" style="color:#064e3b;">Slow progression</div><div class="mex" style="color:#065f46;">Not cancerous</div></div>
+        <div class="mcard" style="background:#fee2e2;border-color:#fca5a5;"><div class="mcode" style="color:#991b1b;">Malignant</div><div class="mname" style="color:#7f1d1d;">Rapid progression</div><div class="mex" style="color:#991b1b;">Cancerous</div></div>
+        <div class="mcard" style="background:#fef3c7;border-color:#fbbf24;"><div class="mcode" style="color:#92400e;">Ca in Situ</div><div class="mname" style="color:#78350f;">Cancerous changes</div><div class="mex" style="color:#92400e;">Does NOT extend beyond origin</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. ICD-10-PCS -->
+  <div class="sec-card">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-icon" style="background:#ffe4e6;">🏥</div>
+      <div class="sec-title" style="color:#9f1239;">ICD-10-PCS — Inpatient Procedures</div>
+      <span class="sec-count chip-coral chip">5 terms</span>
+      <span class="sec-arrow">▼</span>
+    </div>
+    <div class="sec-body">
+      <div class="tip tip-coral"><strong>ICD-10-PCS Key Fact</strong>The ONLY code set for inpatient hospital procedures. Developed by CMS. Replaced ICD-9-CM procedure codes on October 1, 2015.</div>
+      <table class="ctable">
+        <tr><th>Term / Concept</th><th>Meaning & Key Detail</th></tr>
+        <tr><td><div class="term">Full name</div></td><td><div class="def">International Classification of Diseases, 10th Revision, Procedure Coding System</div></td></tr>
+        <tr><td><div class="term">Developed by</div></td><td><div class="def">CMS — Centers for Medicare & Medicaid Services</div></td></tr>
+        <tr><td><div class="term">Used for</div></td><td><div class="def">Inpatient hospital procedures ONLY</div><div class="ex">Never used in outpatient, physician office, or ASC settings</div></td></tr>
+        <tr><td><div class="term">What book provides unique code for all inpatient procedures?</div></td><td><div class="def">ICD-10-PCS</div></td></tr>
+        <tr><td><div class="term">Replaced when</div></td><td><div class="def">October 1, 2015 — replaced ICD-9-CM procedure codes</div></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 6. COMPLIANCE & ORGANIZATIONS -->
+  <div class="sec-card">
+    <div class="sec-head" onclick="toggleSec(this)">
+      <div class="sec-icon" style="background:#fce7f3;">🏛️</div>
+      <div class="sec-title" style="color:#831843;">Organizations, Compliance & Abbreviations</div>
+      <span class="sec-count chip-pink chip">12 terms</span>
+      <span class="sec-arrow">▼</span>
+    </div>
+    <div class="sec-body">
+      <table class="ctable">
+        <tr><th>Abbreviation / Term</th><th>Full Name & Purpose</th></tr>
+        <tr><td><div class="term">AMA</div></td><td><div class="def">American Medical Association — publishes and maintains CPT annually</div></td></tr>
+        <tr><td><div class="term">CMS</div></td><td><div class="def">Centers for Medicare & Medicaid Services — maintains HCPCS Level 2, ICD-10-PCS, publishes new/deleted CPT codes</div></td></tr>
+        <tr><td><div class="term">NCHS</div></td><td><div class="def">National Center for Health Statistics — developed ICD-10-CM to replace ICD-9-CM</div></td></tr>
+        <tr><td><div class="term">HIPAA</div></td><td><div class="def">Health Insurance Portability and Accountability Act of 1996</div></td></tr>
+        <tr><td><div class="term">OIG</div></td><td><div class="def">Office of Inspector General — oversees healthcare fraud and compliance</div></td></tr>
+        <tr><td><div class="term">PDAC</div></td><td><div class="def">Pricing, Coding Analysis and Coding Contractor — assists suppliers/manufacturers in determining HCPCS codes for CMS</div></td></tr>
+        <tr><td><div class="term">Certificate of Medical Necessity</div></td><td><div class="def">Prescription for DMEPOS from treating physician</div><div class="ex">DMEPOS = Durable Medical Equipment, Prosthetics, Orthotics, Supplies</div></td></tr>
+        <tr><td><div class="term">UB-04</div></td><td><div class="def">Hospital facility claim form (inpatient & outpatient hospital)</div></td></tr>
+        <tr><td><div class="term">CMS-1500</div></td><td><div class="def">Physician/professional provider claim form</div></td></tr>
+        <tr><td><div class="term">ICD-10 replaced ICD-9 when?</div></td><td><div class="def">October 1, 2015</div></td></tr>
+        <tr><td><div class="term">Methadone injection in rehab hospital</div></td><td><div class="def">H0020 — HCPCS Level 2 drug/alcohol treatment code</div></td></tr>
+        <tr><td><div class="term">DMEPOS prescription form</div></td><td><div class="def">Certificate of Medical Necessity</div></td></tr>
+      </table>
+    </div>
+  </div>
+
+</div><!-- end learn page -->
+
+<!-- ═══════════════════════════════════════════════════════ FLASHCARDS PAGE -->
+<div id="pg-flash" class="page">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:1rem;flex-wrap:wrap;">
+    <select class="fc-cat-sel" id="fcCat" onchange="initFlash()">
+      <option value="all">All categories (72 cards)</option>
+      <option value="cpt">CPT Fundamentals</option>
+      <option value="em">E&M Services</option>
+      <option value="hcpcs">HCPCS</option>
+      <option value="icd">ICD-10-CM</option>
+      <option value="pcs">ICD-10-PCS</option>
+      <option value="org">Organizations & Abbreviations</option>
+    </select>
+    <button onclick="shuffleFlash()" style="padding:7px 16px;border-radius:8px;border:1.5px solid var(--gray-m);background:var(--white);font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer;">🔀 Shuffle</button>
+    <span class="fc-counter" id="fcCounter">Card 1 of 72</span>
+  </div>
+  <p class="fc-hint">Click the card to flip it and see the answer</p>
+  <div class="flashcard" onclick="flipCard()">
+    <div class="fc-inner" id="fcInner">
+      <div class="fc-front" id="fcFront">Loading...</div>
+      <div class="fc-back" id="fcBack"><div class="ans" id="fcAns"></div><div id="fcEx" style="font-size:12px;color:var(--muted);"></div></div>
+    </div>
+  </div>
+  <div class="fc-nav">
+    <button onclick="fcMove(-1)">← Prev</button>
+    <span class="fc-pos" id="fcPos">1 / 72</span>
+    <button onclick="fcMove(1)">Next →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ QUIZ PAGE -->
+<div id="pg-quiz" class="page">
+  <div id="quizWrap"></div>
+</div>
+
+<script>
+// ── TAB / SECTION LOGIC ────────────────────────────────────────────────────
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+  document.getElementById('pg-' + id).classList.add('on');
+  btn.classList.add('on');
+  if (id === 'flash') initFlash();
+  if (id === 'quiz') initQuiz();
+}
+function toggleSec(head) {
+  const body = head.nextElementSibling;
+  const arrow = head.querySelector('.sec-arrow');
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+// Open first section by default handled in HTML
+
+// ── FLASHCARD DATA ─────────────────────────────────────────────────────────
+const CARDS = [
+  // CPT
+  {cat:'cpt', q:'What does CPT stand for?', a:'Current Procedural Terminology', ex:'Codes describe procedures and services by providers'},
+  {cat:'cpt', q:'Who publishes and maintains CPT?', a:'AMA — American Medical Association', ex:'Updated annually every January'},
+  {cat:'cpt', q:'What year was CPT first published?', a:'1966'},
+  {cat:'cpt', q:'CPT describes what types of services?', a:'Medical, surgical, and diagnostic services', ex:'This is TRUE — a commonly tested statement'},
+  {cat:'cpt', q:'Name the 6 CPT sections', a:'E&M · Anesthesia · Surgery · Radiology · Pathology/Lab · Medicine'},
+  {cat:'cpt', q:'What are Category II CPT codes?', a:'Optional codes for tracking performance measures', ex:'Not required for billing — supplemental only'},
+  {cat:'cpt', q:'What is the purpose of a CPT modifier?', a:'Describes alterations to a procedure without changing the core code'},
+  {cat:'cpt', q:'What does a circle with a line through it before a CPT code mean?', a:'Modifier 51 exempt — multiple procedures apply'},
+  {cat:'cpt', q:'What is included in a surgical package?', a:'Uncomplicated post-operative care', ex:'Also includes local anesthesia and one related E&M'},
+  {cat:'cpt', q:'Which codes report transitional pass-through payments under OPPS?', a:'C codes'},
+  {cat:'cpt', q:'CPT surgery section code range', a:'10004–69990'},
+  {cat:'cpt', q:'CPT radiology section code range', a:'70010–79999'},
+  {cat:'cpt', q:'CPT pathology & lab section code range', a:'80047–89398'},
+  {cat:'cpt', q:'Who publishes new and deleted CPT codes?', a:'CMS — Centers for Medicare & Medicaid Services'},
+  {cat:'cpt', q:'What do providers enter on insurance forms to show services performed?', a:'CPT and HCPCS codes'},
+  // E&M
+  {cat:'em', q:'What are the 3 key components of an E&M service?', a:'History · Examination · Medical Decision-Making', ex:'Abbreviated as HEM'},
+  {cat:'em', q:'What does HEM stand for?', a:'History · Examination · Medical Decision-Making'},
+  {cat:'em', q:'Can time take precedence over HEM?', a:'YES — when counseling/coordination dominates the encounter'},
+  {cat:'em', q:'What is an established patient?', a:'Seen by same specialty within the past 3 years'},
+  {cat:'em', q:'What is a new patient?', a:'NOT seen by same specialty in past 3 years'},
+  {cat:'em', q:'Name the 4 patient status types', a:'New · Established · Inpatient · Outpatient'},
+  {cat:'em', q:'First 3 factors to consider when coding a patient encounter', a:'Status · Type of service · Place of service'},
+  {cat:'em', q:'What is a consultation?', a:'Service provided by a physician whose opinion is requested by another provider'},
+  {cat:'em', q:'What are the 3 R\'s of consultations?', a:'Request · Render · Report'},
+  {cat:'em', q:'Which E&M subcategory requires only 2 of 3 key components?', a:'Subsequent hospital care'},
+  // HCPCS
+  {cat:'hcpcs', q:'What does HCPCS stand for?', a:'Healthcare Common Procedure Coding System'},
+  {cat:'hcpcs', q:'Who established HCPCS and when?', a:'CMS — in 1978', ex:'To provide a standardized coding system'},
+  {cat:'hcpcs', q:'HCPCS Level 1 = ?', a:'CPT codes'},
+  {cat:'hcpcs', q:'HCPCS Level 2 = ?', a:'Alphanumeric codes for supplies, drugs, DME, services not in CPT'},
+  {cat:'hcpcs', q:'What are J codes used for?', a:'Injectable/infusible drugs in clinical settings', ex:'Listed by generic name in table of drugs'},
+  {cat:'hcpcs', q:'What are G codes?', a:'Temporary medical procedures/professional services — no CPT code exists yet'},
+  {cat:'hcpcs', q:'What are S codes?', a:'BCBS codes — NOT valid for Medicare/Medicaid; used for private payers'},
+  {cat:'hcpcs', q:'HCPCS Level 2 modifiers can be added to what?', a:'CPT codes as well as HCPCS Level 2 codes'},
+  {cat:'hcpcs', q:'Where are Level 2 modifiers found in HCPCS manual?', a:'After table of drugs OR before A codes'},
+  {cat:'hcpcs', q:'HCPCS is also found in which CPT appendix?', a:'Appendix A — Modifiers'},
+  {cat:'hcpcs', q:'What does SC mean in drug route abbreviations?', a:'Subcutaneous'},
+  {cat:'hcpcs', q:'What does IM mean in drug route abbreviations?', a:'Intramuscular'},
+  {cat:'hcpcs', q:'What does IV mean in drug route abbreviations?', a:'Intravenous'},
+  {cat:'hcpcs', q:'What does IT mean in drug route abbreviations?', a:'Intrathecal'},
+  {cat:'hcpcs', q:'What does INH mean?', a:'Inhalant solution'},
+  {cat:'hcpcs', q:'Patient in drug rehab getting methadone injection — what code?', a:'H0020'},
+  // ICD
+  {cat:'icd', q:'Who developed ICD-10-CM?', a:'NCHS — National Center for Health Statistics'},
+  {cat:'icd', q:'When did ICD-10 replace ICD-9-CM?', a:'October 1, 2015'},
+  {cat:'icd', q:'Maximum characters in ICD-10-CM?', a:'7 characters'},
+  {cat:'icd', q:'ICD-10-CM tabular list has how many chapters?', a:'21 chapters — based on body system or nature of disease'},
+  {cat:'icd', q:'What does NEC mean?', a:'Not Elsewhere Classified', ex:'Specific condition but no individual code exists'},
+  {cat:'icd', q:'What does NOS mean?', a:'Not Otherwise Specified', ex:'Not enough documentation for more detail'},
+  {cat:'icd', q:'What does Excludes 1 mean?', a:'NEVER use with this code — do not report both codes'},
+  {cat:'icd', q:'What does Excludes 2 mean?', a:'Patient may have both conditions — BOTH codes can be reported'},
+  {cat:'icd', q:'What is a combination code?', a:'One code captures both etiology AND manifestation'},
+  {cat:'icd', q:'What does laterality refer to?', a:'Paired organs — left or right side'},
+  {cat:'icd', q:'What do Z codes indicate?', a:'Reason for an encounter (not an illness)', ex:'Used more in outpatient settings'},
+  {cat:'icd', q:'What is a benign neoplasm?', a:'Slow progression — NOT cancerous'},
+  {cat:'icd', q:'What is a malignant neoplasm?', a:'Rapid progression — CANCEROUS'},
+  {cat:'icd', q:'What is carcinoma in situ?', a:'Cancerous changes that do NOT extend beyond point of origin'},
+  {cat:'icd', q:'If fracture not coded as open or closed, default is?', a:'CLOSED fracture'},
+  {cat:'icd', q:'What is a crosswalk?', a:'Comparison of two coding systems showing equivalent classifications'},
+  // PCS
+  {cat:'pcs', q:'Who developed ICD-10-PCS?', a:'CMS — Centers for Medicare & Medicaid Services'},
+  {cat:'pcs', q:'ICD-10-PCS is used exclusively for what?', a:'Inpatient hospital procedures ONLY'},
+  {cat:'pcs', q:'What book provides unique codes for all inpatient procedures?', a:'ICD-10-PCS'},
+  {cat:'pcs', q:'When did ICD-10-PCS replace ICD-9-CM procedure codes?', a:'October 1, 2015'},
+  {cat:'pcs', q:'Can ICD-10-PCS be used in a physician office or ASC?', a:'NO — inpatient hospital only'},
+  // ORG
+  {cat:'org', q:'What does AMA stand for?', a:'American Medical Association', ex:'Publishes and maintains CPT'},
+  {cat:'org', q:'What does CMS stand for?', a:'Centers for Medicare & Medicaid Services'},
+  {cat:'org', q:'What does NCHS stand for?', a:'National Center for Health Statistics'},
+  {cat:'org', q:'What does HIPAA stand for?', a:'Health Insurance Portability and Accountability Act of 1996'},
+  {cat:'org', q:'What does OIG stand for?', a:'Office of Inspector General'},
+  {cat:'org', q:'What is a certificate of medical necessity?', a:'Prescription for DMEPOS from treating physician'},
+  {cat:'org', q:'What does PDAC stand for?', a:'Pricing, Coding Analysis and Coding Contractor — assists with HCPCS codes'},
+  {cat:'org', q:'What claim form does a hospital use?', a:'UB-04 (CMS-1450)'},
+  {cat:'org', q:'What claim form does a physician use?', a:'CMS-1500'},
+  {cat:'org', q:'What is a diagnostic statement?', a:'Physician\'s description of the main reason for a patient encounter'},
+];
+
+let fcDeck = [], fcIdx = 0, fcFlipped = false;
+function shuffle(arr) { return [...arr].sort(() => Math.random() - .5); }
+function initFlash() {
+  const cat = document.getElementById('fcCat').value;
+  fcDeck = shuffle(cat === 'all' ? CARDS : CARDS.filter(c => c.cat === cat));
+  fcIdx = 0; fcFlipped = false;
+  showCard();
+}
+function shuffleFlash() { fcDeck = shuffle(fcDeck); fcIdx = 0; fcFlipped = false; showCard(); }
+function showCard() {
+  const c = fcDeck[fcIdx];
+  document.getElementById('fcFront').textContent = c.q;
+  document.getElementById('fcAns').textContent = c.a;
+  document.getElementById('fcEx').textContent = c.ex || '';
+  const inner = document.getElementById('fcInner');
+  inner.classList.remove('flipped');
+  fcFlipped = false;
+  document.getElementById('fcPos').textContent = `${fcIdx+1} / ${fcDeck.length}`;
+  document.getElementById('fcCounter').textContent = `Card ${fcIdx+1} of ${fcDeck.length}`;
+}
+function flipCard() {
+  fcFlipped = !fcFlipped;
+  document.getElementById('fcInner').classList.toggle('flipped', fcFlipped);
+}
+function fcMove(dir) {
+  fcIdx = (fcIdx + dir + fcDeck.length) % fcDeck.length;
+  showCard();
+}
+
+// ── QUIZ DATA ──────────────────────────────────────────────────────────────
+const QUESTIONS = [
+  {cat:'CPT', q:'CPT is published and maintained by which organization?', opts:['A. CMS','B. WHO','C. AMA — American Medical Association','D. NCHS'], cor:2, rats:[{ok:false,l:'A',w:'CMS maintains HCPCS Level II and ICD-10-PCS — not CPT.'},{ok:false,l:'B',w:'WHO maintains ICD coding systems globally — not CPT.'},{ok:true,l:'C',w:'AMA (American Medical Association) owns and publishes CPT. It has been maintained annually since 1966.'},{ok:false,l:'D',w:'NCHS developed ICD-10-CM — not CPT.'}]},
+  {cat:'CPT', q:'What year was the first edition of CPT published?', opts:['A. 1978','B. 1966','C. 1990','D. 2015'], cor:1, rats:[{ok:false,l:'A',w:'1978 is when HCPCS was established by CMS.'},{ok:true,l:'B',w:'The first edition of CPT was published in 1966 by the AMA.'},{ok:false,l:'C',w:'Incorrect — CPT has existed since 1966.'},{ok:false,l:'D',w:'2015 is when ICD-10 replaced ICD-9-CM — not when CPT was first published.'}]},
+  {cat:'CPT', q:'Which component is included in a surgical package?', opts:['A. Related office visits one year post-op','B. Uncomplicated post-operative care','C. All anesthesia services','D. Laboratory tests ordered during surgery'], cor:1, rats:[{ok:false,l:'A',w:'Post-op visits are included for a defined global period — not indefinitely for one year.'},{ok:true,l:'B',w:'Uncomplicated post-operative care is part of the surgical package. It also includes local anesthesia and one related E&M the day before/of surgery.'},{ok:false,l:'C',w:'General/regional anesthesia is separate — not bundled into the surgical package.'},{ok:false,l:'D',w:'Lab tests are billed separately — not included in the surgical package.'}]},
+  {cat:'CPT', q:'CPT Category II codes are used for what purpose?', opts:['A. Replacing deleted CPT codes temporarily','B. Tracking performance measures (optional)','C. Inpatient hospital procedures','D. Outpatient drug administration'], cor:1, rats:[{ok:false,l:'A',w:'Deleted codes are replaced by new CPT codes or HCPCS Level II — not Category II.'},{ok:true,l:'B',w:'Category II codes are optional supplemental codes for tracking performance measures. They are not required for billing.'},{ok:false,l:'C',w:'Inpatient hospital procedures use ICD-10-PCS — not CPT Category II.'},{ok:false,l:'D',w:'Drug administration uses HCPCS J codes — not Category II.'}]},
+  {cat:'E&M', q:'What are the three key components of an E&M service?', opts:['A. Request, Render, Report','B. Status, Type, Place','C. History, Examination, Medical Decision-Making','D. New, Established, Inpatient'], cor:2, rats:[{ok:false,l:'A',w:'Request, Render, Report are the 3 R\'s of CONSULTATIONS — not E&M key components.'},{ok:false,l:'B',w:'Status, Type, Place are the first three factors to consider when CODING a patient encounter — not E&M components.'},{ok:true,l:'C',w:'The 3 key E&M components are History (H), Examination (E), and Medical Decision-Making (M) — abbreviated HEM.'},{ok:false,l:'D',w:'New, Established, Inpatient are patient STATUS types — not E&M components.'}]},
+  {cat:'E&M', q:'Which E&M subcategory requires only TWO of the three key components?', opts:['A. New patient office visit','B. Initial hospital care','C. Subsequent hospital care','D. Emergency department visit'], cor:2, rats:[{ok:false,l:'A',w:'New patient office visits require all 3 key components.'},{ok:false,l:'B',w:'Initial hospital care requires all 3 key components.'},{ok:true,l:'C',w:'Subsequent hospital care (and a few other categories) requires only 2 of 3 key components. This is a frequently tested exception.'},{ok:false,l:'D',w:'ED visits require 3 key components.'}]},
+  {cat:'E&M', q:'What defines an established patient?', opts:['A. Any patient who has Medicare or Medicaid','B. Seen by same specialty within the past 3 years','C. A patient who has been hospitalized','D. Any patient with a chronic condition'], cor:1, rats:[{ok:false,l:'A',w:'Patient status is not based on insurance type.'},{ok:true,l:'B',w:'An established patient has been seen by the same physician or same specialty group within the past 3 years.'},{ok:false,l:'C',w:'Hospitalization determines inpatient vs outpatient status — not new vs established.'},{ok:false,l:'D',w:'Having a chronic condition does not determine patient status.'}]},
+  {cat:'E&M', q:'The three R\'s of consultations are:', opts:['A. Review, Respond, Record','B. Request, Render, Report','C. Refer, Receive, Return','D. Reason, Result, Response'], cor:1, rats:[{ok:false,l:'A',w:'Not the standard definition — not a recognized guideline term.'},{ok:true,l:'B',w:'The 3 R\'s: Request (another provider requests the opinion), Render (the consultant evaluates the patient), Report (written report back to requesting provider).'},{ok:false,l:'C',w:'Not the standard coding guideline terminology.'},{ok:false,l:'D',w:'Not the standard coding guideline terminology.'}]},
+  {cat:'HCPCS', q:'HCPCS was established by whom and when?', opts:['A. AMA in 1966','B. NCHS in 2015','C. CMS in 1978','D. WHO in 1990'], cor:2, rats:[{ok:false,l:'A',w:'The AMA published CPT in 1966 — not HCPCS.'},{ok:false,l:'B',w:'NCHS developed ICD-10-CM. 2015 is when ICD-10 replaced ICD-9.'},{ok:true,l:'C',w:'CMS (Centers for Medicare & Medicaid Services) established HCPCS in 1978 to provide a standardized coding system.'},{ok:false,l:'D',w:'WHO is responsible for ICD systems — not HCPCS.'}]},
+  {cat:'HCPCS', q:'HCPCS J codes are used to report:', opts:['A. Physician office visits','B. Durable medical equipment','C. Injectable and infusible drugs','D. Inpatient hospital procedures'], cor:2, rats:[{ok:false,l:'A',w:'Physician office visits use CPT E&M codes.'},{ok:false,l:'B',w:'DME uses HCPCS E and K codes — not J codes.'},{ok:true,l:'C',w:'J codes (J0001–J9999) cover injectable and infusible drugs. They are listed by generic name in the HCPCS table of drugs.'},{ok:false,l:'D',w:'Inpatient hospital procedures use ICD-10-PCS — not J codes.'}]},
+  {cat:'HCPCS', q:'S codes in HCPCS are:', opts:['A. Valid for all Medicare and Medicaid patients','B. BCBS codes — NOT valid for Medicare/Medicaid; used for private payers','C. Temporary codes for new technology','D. Supply codes for hospitals only'], cor:1, rats:[{ok:false,l:'A',w:'S codes are specifically NOT valid for Medicare or Medicaid.'},{ok:true,l:'B',w:'S codes are maintained by BCBS (Blue Cross Blue Shield) and are useful for private payer claims. They cannot be submitted to Medicare or Medicaid.'},{ok:false,l:'C',w:'Temporary codes for new technology are C codes and G codes — not S codes.'},{ok:false,l:'D',w:'S codes are for private payer claims — not exclusive to hospitals.'}]},
+  {cat:'HCPCS', q:'A patient in a drug and alcohol rehabilitation hospital receives a methadone injection. Which HCPCS code is used?', opts:['A. J3490','B. G0008','C. H0020','D. S0028'], cor:2, rats:[{ok:false,l:'A',w:'J3490 is an unclassified drug code — not specific to methadone in rehab settings.'},{ok:false,l:'B',w:'G0008 is for flu vaccine administration — not methadone.'},{ok:true,l:'C',w:'H0020 is the correct HCPCS code for methadone administration in a drug/alcohol rehabilitation setting.'},{ok:false,l:'D',w:'S codes are for private payer BCBS claims — not the appropriate code here.'}]},
+  {cat:'ICD', q:'ICD-10-CM was developed by which organization?', opts:['A. AMA','B. CMS','C. NCHS — National Center for Health Statistics','D. WHO'], cor:2, rats:[{ok:false,l:'A',w:'AMA developed CPT — not ICD-10-CM.'},{ok:false,l:'B',w:'CMS developed ICD-10-PCS. ICD-10-CM was developed by NCHS.'},{ok:true,l:'C',w:'ICD-10-CM was developed by NCHS (National Center for Health Statistics), a division of the CDC, to replace ICD-9-CM.'},{ok:false,l:'D',w:'WHO developed ICD-10 for global use. The US clinical modification (ICD-10-CM) was developed by NCHS.'}]},
+  {cat:'ICD', q:'ICD-10-CM Excludes 1 means:', opts:['A. Both codes can be reported if patient has both conditions','B. Code is optional — report only if documented','C. NEVER use with this code — do not report both codes','D. Exclude this code from outpatient claims'], cor:2, rats:[{ok:false,l:'A',w:'That is the definition of EXCLUDES 2 — not Excludes 1.'},{ok:false,l:'B',w:'There is no "optional" concept associated with Excludes 1.'},{ok:true,l:'C',w:'Excludes 1 = these two conditions cannot occur together. Do NOT report both codes. Example: a congenital condition and acquired form cannot coexist.'},{ok:false,l:'D',w:'Excludes notes apply in all settings — not just outpatient.'}]},
+  {cat:'ICD', q:'What is a combination code in ICD-10-CM?', opts:['A. Two codes reported together for the same condition','B. A code that captures both etiology and manifestation in one code','C. A code used when two diagnoses are equally responsible','D. A code from both ICD-10-CM and ICD-10-PCS'], cor:1, rats:[{ok:false,l:'A',w:'Two codes reported together is a different concept (etiology/manifestation coding). A combination code replaces the need for two codes.'},{ok:true,l:'B',w:'A combination code captures both the underlying condition (etiology) AND its complication or manifestation in a single code. Example: E11.65 Type 2 DM with hyperglycemia.'},{ok:false,l:'C',w:'When two diagnoses are equally responsible, sequencing guidelines apply — this is not the definition of a combination code.'},{ok:false,l:'D',w:'Combination codes exist only within ICD-10-CM — they do not mix with ICD-10-PCS.'}]},
+  {cat:'ICD', q:'If a fracture is not documented as open or closed, how should it be coded?', opts:['A. Open fracture — always assume worst case','B. Closed fracture — this is the default','C. Query the physician before coding','D. Use an unspecified fracture code'], cor:1, rats:[{ok:false,l:'A',w:'Do NOT assume open fracture — that would overcode the severity.'},{ok:true,l:'B',w:'ICD-10-CM guideline: if not documented as open or closed, default to CLOSED fracture.'},{ok:false,l:'C',w:'While querying is good practice, the coding guideline gives a clear default — closed.'},{ok:false,l:'D',w:'The guideline specifically states to code as closed — not unspecified.'}]},
+  {cat:'ICD', q:'Carcinoma in situ means:', opts:['A. Cancer that has spread to lymph nodes','B. Slow-growing but potentially cancerous over time','C. Cancerous cell changes that do not extend beyond the point of origin','D. A benign tumor that has no cancer risk'], cor:2, rats:[{ok:false,l:'A',w:'Cancer that has spread describes metastatic malignancy — not carcinoma in situ.'},{ok:false,l:'B',w:'Slow-growing but potentially cancerous describes some benign conditions. Carcinoma in situ IS cancerous but contained.'},{ok:true,l:'C',w:'Carcinoma in situ: cancerous cell changes are present BUT the cancer has not invaded surrounding tissue or spread beyond the original site.'},{ok:false,l:'D',w:'Carcinoma in situ is NOT benign — it has cancerous changes.'}]},
+  {cat:'PCS', q:'ICD-10-PCS was developed by which department?', opts:['A. AMA','B. NCHS','C. CMS — Centers for Medicare & Medicaid Services','D. WHO'], cor:2, rats:[{ok:false,l:'A',w:'AMA publishes CPT — not ICD-10-PCS.'},{ok:false,l:'B',w:'NCHS developed ICD-10-CM — not PCS.'},{ok:true,l:'C',w:'CMS (Centers for Medicare & Medicaid Services) developed ICD-10-PCS, the procedure classification used exclusively for inpatient hospital procedures.'},{ok:false,l:'D',w:'WHO develops international ICD systems — not ICD-10-PCS.'}]},
+  {cat:'Orgs', q:'What does HIPAA stand for?', opts:['A. Health Information Privacy and Accountability Act','B. Health Insurance Portability and Accountability Act of 1996','C. Hospital Insurance Payment and Accounting Act','D. Healthcare Institution Protection and Authorization Act'], cor:1, rats:[{ok:false,l:'A',w:'Close but not quite — the P stands for Portability, not Privacy.'},{ok:true,l:'B',w:'HIPAA = Health Insurance Portability and Accountability Act of 1996. It establishes patient privacy rights and standardizes electronic health transactions.'},{ok:false,l:'C',w:'Incorrect — HIPAA is about portability and accountability, not payment accounting.'},{ok:false,l:'D',w:'Incorrect phrasing — this is not the actual name.'}]},
+  {cat:'Orgs', q:'What is the purpose of PDAC in the context of HCPCS?', opts:['A. It audits physician billing for Medicare compliance','B. It publishes the CPT manual annually','C. It assists suppliers and manufacturers in determining correct HCPCS codes for CMS','D. It sets reimbursement rates for DME'], cor:2, rats:[{ok:false,l:'A',w:'Medicare billing audits are done by MACs and RACs — not PDAC.'},{ok:false,l:'B',w:'CPT is published by the AMA — not PDAC.'},{ok:true,l:'C',w:'PDAC (Pricing, Coding Analysis and Coding Contractor) helps suppliers and manufacturers determine the correct HCPCS codes for products billed to CMS.'},{ok:false,l:'D',w:'Reimbursement rates are set through CMS fee schedules — PDAC determines coding, not pricing.'}]},
+  {cat:'Orgs', q:'A certificate of medical necessity is best described as:', opts:['A. A hospital discharge summary','B. An authorization from the insurance company','C. A prescription for DMEPOS from the treating physician','D. A code used on the CMS-1500 for DME'], cor:2, rats:[{ok:false,l:'A',w:'A discharge summary is part of the medical record — not a certificate of medical necessity.'},{ok:false,l:'B',w:'Insurance authorization is a separate process from the certificate of medical necessity.'},{ok:true,l:'C',w:'A Certificate of Medical Necessity (CMN) is a prescription/order from the treating physician documenting that DMEPOS (Durable Medical Equipment, Prosthetics, Orthotics, Supplies) is medically necessary.'},{ok:false,l:'D',w:'A certificate of medical necessity is a document — not a billing code.'}]},
+];
+
+// ── QUIZ ENGINE ────────────────────────────────────────────────────────────
+let qIdx = 0, qScore = 0, qAnswered = {};
+function initQuiz() {
+  qIdx = 0; qScore = 0; qAnswered = {};
+  renderQuiz();
+}
+function renderQuiz() {
+  const wrap = document.getElementById('quizWrap');
+  if (qIdx >= QUESTIONS.length) { showQResult(); return; }
+
+  const pct = Math.round((qIdx / QUESTIONS.length) * 100);
+  let html = `<div class="quiz-progress">
+    <div class="qp-track"><div class="qp-fill" style="width:${pct}%"></div></div>
+    <span class="qp-label">${qIdx+1}/${QUESTIONS.length}</span>
+    <span class="qscore">Score: ${qScore}/${qIdx}</span>
+  </div>`;
+
+  const q = QUESTIONS[qIdx];
+  const isAns = qAnswered[qIdx] !== undefined;
+  const uChoice = qAnswered[qIdx];
+
+  // Category colors
+  const catColors = {CPT:'chip-blue',E:'chip-green','E&M':'chip-green',HCPCS:'chip-amber',ICD:'chip-purple',PCS:'chip-coral',Orgs:'chip-pink'};
+  const catKey = Object.keys(catColors).find(k => q.cat.startsWith(k)) || 'chip-blue';
+
+  let optsHtml = q.opts.map((o, oi) => {
+    let cls = 'qopt';
+    if (isAns) { cls += ' locked'; if (oi === q.cor) cls += ' correct'; else if (oi === uChoice) cls += ' wrong'; }
+    const letter = String.fromCharCode(65+oi);
+    return `<button class="${cls}" ${isAns?'':` onclick="qAnswer(${qIdx},${oi})"`}><span class="qletter">${letter}</span><span>${o.substring(3)}</span></button>`;
+  }).join('');
+
+  let ratHtml = isAns ? q.rats.map(r =>
+    `<div class="rat-row ${r.ok?'rok':'rno'}"><span class="rat-icon">${r.ok?'✓':'✗'}</span><span class="rat-text"><b>${r.l}.</b> ${r.w}</span></div>`
+  ).join('') : '';
+
+  html += `<div class="qcard">
+    <div class="qcard-head">
+      <span class="qtag ${catColors[catKey]||'chip-blue'} chip">${q.cat}</span>
+      <div class="qnum">Question ${qIdx+1} of ${QUESTIONS.length}</div>
+      <div class="qtext">${q.q}</div>
+    </div>
+    <div class="qopts">${optsHtml}</div>
+    <div class="rat-panel ${isAns?'show':''}" id="ratPanel">${ratHtml}</div>
+    <div class="nbtn ${isAns?'show':''}" id="nbtn">
+      <button onclick="qNext()">${qIdx<QUESTIONS.length-1?'Next question →':'See results →'}</button>
+    </div>
+  </div>`;
+
+  wrap.innerHTML = html;
+}
+
+function qAnswer(qi, oi) {
+  if (qAnswered[qi] !== undefined) return;
+  qAnswered[qi] = oi;
+  if (oi === QUESTIONS[qi].cor) qScore++;
+  renderQuiz();
+}
+function qNext() { qIdx++; renderQuiz(); }
+
+function showQResult() {
+  const total = QUESTIONS.length;
+  const pct = Math.round((qScore/total)*100);
+  const msg = pct>=90?'Outstanding! You\'ve mastered these concepts.':pct>=80?'Excellent — you\'re well prepared for the exam.':pct>=70?'Good progress — review the topics you missed.':pct>=60?'Keep studying — use the flashcards to drill weak areas.':'More review needed — go back to Learn by Topic and try again.';
+  
+  const catScores = {};
+  QUESTIONS.forEach((q,i) => {
+    if (!catScores[q.cat]) catScores[q.cat] = {r:0,t:0};
+    catScores[q.cat].t++;
+    if (qAnswered[i]===q.cor) catScores[q.cat].r++;
+  });
+  const bdHtml = Object.entries(catScores).map(([cat,s]) => {
+    const p = Math.round((s.r/s.t)*100);
+    const ok = p>=70;
+    return `<div class="rb-cat" style="background:${ok?'#d1fae5':'#fee2e2'};color:${ok?'#065f46':'#991b1b'};border-color:${ok?'#34d399':'#fca5a5'}">${cat}: ${s.r}/${s.t}</div>`;
+  }).join('');
+
+  document.getElementById('quizWrap').innerHTML = `<div class="result-box">
+    <div class="rb-score">${qScore}/${total}</div>
+    <div class="rb-pct">${pct}%</div>
+    <div class="rb-msg">${msg}</div>
+    <div class="rb-cats">${bdHtml}</div>
+    <div class="rb-btns">
+      <button class="rb-btn primary" onclick="initQuiz()">↺ Retake quiz</button>
+      <button class="rb-btn outline" onclick="showPage('learn',document.querySelector('.tab'))">📚 Review topics</button>
+      <button class="rb-btn outline" onclick="showPage('flash',document.querySelectorAll('.tab')[1])">🃏 Flashcards</button>
+    </div>
+  </div>`;
+}
+
+// init
+initFlash();
+</script>
+</body>
+</html>
